@@ -4,46 +4,44 @@ import random
 import schedule
 from datetime import datetime
 
-
 USERNAME = "bot.t5le3"
 PASSWORD = "Abdulaziz7!"
-RECIPIENT_USERNAME = "yilxlu"
+
+cl = Client()
+
+# تحميل الجلسة المحفوظة إذا كانت موجودة
+try:
+    cl.load_settings("session.json")
+    cl.login(USERNAME, PASSWORD)
+    print("✅ save sesstion succesfuly.")
+except:
+    print("⚠️ there is no session")
+    cl.login(USERNAME, PASSWORD)
+    cl.dump_settings("session.json")  # حفظ الجلسة لاستخدامها لاحقًا
+
+print("✅ login to Instagram succes")
 
 messages = [
     "والله لا اهكرك",
-    "هلامنى",
-   "هاي انا بوت"
-   "وينك"
-   "قومي دوام"
-   "هههههههههههههههههههههههههههههههههه"
-     "قم الساعه 8 الحين قدامي عالحامعه بسرعه",
+    "هلاااا",
+    "هاي انا بوت",
+    "وينك",
+    "قومي دوام",
+    "😂😂😂😂😂😂😂😂😂😂",
+    "قم الساعه 8 الحين قدامي عالحامعه بسرعه",
 ]
-
-cl = Client()
-cl.login(USERNAME, PASSWORD)
 
 def send_random_message():
     """ إرسال رسالة عشوائية في وقت عشوائي بين 8:00 - 9:00 صباحًا """
     message = random.choice(messages)
-    user_id = cl.user_id_from_username(RECIPIENT_USERNAME)
+    user_id = cl.user_id_from_username("yilxlu")
     cl.direct_send(message, user_ids=[user_id])
-    print(f"[{datetime.now()}] send seccusfle {RECIPIENT_USERNAME}: {message}")
+    print(f"[{datetime.now()}] send succesful to yilxlu: {message}")
 
-def schedule_random_messages():
-    """ جدولة الرسائل في أوقات عشوائية بين 8:00 - 9:00 صباحًا """
-    for _ in range(random.randint(3, 7)):  # عدد الرسائل العشوائي يوميًا (بين 3 إلى 7)
-        random_minute = random.randint(0, 59)
-        scheduled_time = f"08:{random_minute:02d}"  # صيغة HH:MM
-        schedule.every().day.at(scheduled_time).do(send_random_message)
-        print(f"📅 massge request on time {scheduled_time}")
+schedule.every().day.at("08:30").do(send_random_message)
 
-# جدولة الرسائل كل يوم الساعة 8 صباحًا مع أوقات عشوائية
-schedule.every().day.at("08:00").do(schedule_random_messages)
+print("✅ bot ready to work ")
 
-print("bot start work ")
-
-# تشغيل الجدولة باستمرار
 while True:
     schedule.run_pending()
-    time.sleep(30)  # التحقق كل 30 ثانية
-
+    time.sleep(30)
