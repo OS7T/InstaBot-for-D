@@ -1,0 +1,27 @@
+name: Run Instagram Bot
+
+on:
+  schedule:
+    - cron: '0 8 * * *'  # تشغيل البوت يوميًا الساعة 8 صباحًا
+  workflow_dispatch:  # يتيح تشغيل البوت يدويًا عند الحاجة
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install instagrapi schedule
+
+      - name: Run bot
+        run: python main.py
+
