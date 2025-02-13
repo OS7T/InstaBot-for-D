@@ -18,9 +18,10 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Install dependencies
-        run: |
-          pip install instagrapi schedule
+     - name: Install dependencies
+  run: |
+    pip install instagrapi schedule pillow
+
 
       - name: Run bot
         run: python main.py
