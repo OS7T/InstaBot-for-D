@@ -1,10 +1,9 @@
 from instagrapi import Client
 import time
 import random
-import schedule
-from datetime import datetime
 import sys
 import os
+from datetime import datetime
 
 # Login credentials
 USERNAME = "bot.t5le3"
@@ -20,6 +19,10 @@ messages = [
     "قومي دوام",
     "هههههههههههههههههههههههههههههههههه",
     "قم الساعه 8 الحين قدامي عالحامعه بسرعه",
+    "تراني اقول كلام وصخ انتبهي",
+    "زق",
+    "يا حيوانه",
+    "داله",
 ]
 
 # Create client object
@@ -36,30 +39,16 @@ else:
     cl.dump_settings(SESSION_FILE)
 
 def send_random_message():
-    """ Send a random message between 8:00 - 9:00 AM """
+    """ Send a random message immediately """
     message = random.choice(messages)
     user_id = cl.user_id_from_username(RECIPIENT_USERNAME)
     cl.direct_send(message, user_ids=[user_id])
     print(f"[{datetime.now()}] ✅ Message sent successfully to {RECIPIENT_USERNAME}: {message}")
 
-def schedule_random_messages():
-    """ Schedule messages at random times between 8:00 - 9:00 AM """
-    for _ in range(random.randint(3, 7)):  # Number of random messages per day (between 3 to 7)
-        random_minute = random.randint(0, 59)
-        scheduled_time = f"08:{random_minute:02d}"  # Format HH:MM
-        schedule.every().day.at(scheduled_time).do(send_random_message)
-        print(f"📅 Message scheduled at {scheduled_time}")
-
-# Schedule messages
-schedule_random_messages()
-
-# Run scheduled tasks with a set timeout
-start_time = time.time()
-timeout = 180  # Run bot for 3 minutes then exit
-
-while time.time() - start_time < timeout:
-    schedule.run_pending()
-    time.sleep(10)  # Wait between each check to avoid excessive resource usage
+# Send a few messages immediately for testing
+for _ in range(random.randint(3, 5)):  # Adjust the number of messages to send immediately
+    send_random_message()
+    time.sleep(5)  # Short delay between messages to avoid spam detection
 
 print("✅ Bot execution completed successfully.")
-sys.exit(0)  # Exit program after tasks are done
+sys.exit(0)
