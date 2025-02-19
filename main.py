@@ -23,6 +23,17 @@ messages = [
     "زق",
     "يا حيوانه",
     "داله",
+    "بلعنمك",
+    "https://bit.ly/40qpkVa",
+    "ياورع",
+    "من يبغاني اتوطى ببطنه ",
+    "استغفرالله",
+    "اللهم صلي وسلم على نبينامحمد",
+    "انا بوت",
+    "اذا ماحركت الرساله ذي نصروياتك, فاحسن الله عزاك في نفسك, شف اقسم بالله اغلى ما املك مستعد ابيعه مقابل الفوز اليوم",
+    "https://youtu.be/wYyRimdbWno?si=XL9vazYKqCgjhp9j",
+    "يا دكتوره",
+    "https://youtu.be/EuAfKjDVVUM?si=Dw3iDN89cH2TmSVb",
 ]
 
 # Create client object
@@ -46,9 +57,12 @@ def send_random_message():
     print(f"[{datetime.now()}] ✅ Message sent successfully to {RECIPIENT_USERNAME}: {message}")
 
 # Send a few messages immediately for testing
-for _ in range(random.randint(3, 5)):  # Adjust the number of messages to send immediately
+for _ in range(random.randint(3, 10)):  # Adjust the number of messages to send immediately
     send_random_message()
-    time.sleep(5)  # Short delay between messages to avoid spam detection
+    sleep_time = random.randit(30 , 90 )
+        print(f"Waiting {sleep_time} seconds before next message...")
+
+    time.sleep(sleep_time)  # Short delay between messages to avoid spam detection
 
 print("✅ Bot execution completed successfully.")
 sys.exit(0)
