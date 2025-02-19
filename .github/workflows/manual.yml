@@ -2,7 +2,7 @@ name: Run Instagram Bot
 
 on:
   schedule:
-    - cron: '0 8 * * *'  # تشغيل البوت يوميًا الساعة 8 صباحًا
+    - cron: '0 */2 * * *'  # تشغيل البوت كل ساعتين
   workflow_dispatch: {}  # يتيح تشغيل البوت يدويًا عند الحاجة
 
 jobs:
