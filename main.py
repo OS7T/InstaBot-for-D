@@ -60,7 +60,7 @@ def send_random_message():
 for _ in range(random.randint(3, 10)):  # Adjust the number of messages to send immediately
     send_random_message()
     sleep_time = random.randit(30 , 90 )
-        print(f"Waiting {sleep_time} seconds before next message...")
+    print(f"Waiting {sleep_time} seconds before next message...")
 
     time.sleep(sleep_time)  # Short delay between messages to avoid spam detection
 
